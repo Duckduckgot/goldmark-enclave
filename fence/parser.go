@@ -81,10 +81,7 @@ func (b *fencedContainerParser) Open(parent ast.Node, reader text.Reader, pc par
 	node := NewFencedContainer()
 
 	containerTop := string(line[i:])
-	fenceID, err := uuid.New()
-	if err != nil {
-		fenceID = uuid.MD5(fmt.Sprintf("%d:%s", reader.LineOffset(), containerTop))
-	}
+	fenceID := uuid.New()
 	node.SetAttributeString("data-fence-id", []byte(fenceID))
 
 	containerType := "info"
